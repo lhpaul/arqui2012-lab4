@@ -25,7 +25,7 @@ class FunctionalTests(unittest.TestCase):
         request.body = 'prueba'
         request.get_response(main.app)
         request2 = webapp2.Request.blank('/')
-        request2.method = 'POST'
+        request2.method = 'GET'
         response = request2.get_response(main.app)
         data = json.loads(response.body)
         self.assertEqual(data['mensajes'][-1], 'prueba')
@@ -38,7 +38,7 @@ class FunctionalTests(unittest.TestCase):
         request.body = prueba
         request.get_response(main.app)
         request2 = webapp2.Request.blank('/')
-        request2.method = 'POST'
+        request2.method = 'GET'
         response = request2.get_response(main.app)
         data = json.loads(response.body)
         self.assertEqual(json.dumps(data['mensajes'][-1]), prueba)
