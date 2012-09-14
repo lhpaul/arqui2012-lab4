@@ -32,7 +32,6 @@ class HelloWebapp2(webapp2.RequestHandler):
                 f.write(json.dumps(data))
             self.response.write("Mensaje archivado")
             self.response.status = 201
-            self.response.headers['Content-Type'] == 'application/json'
         except Exception:
             self.response.write("No hay mensaje")
             self.response.status = 304
