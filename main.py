@@ -19,6 +19,9 @@ class HelloWebapp2(webapp2.RequestHandler):
             data = json.load(json_data)
             json_data.close()
             mensaje = self.request.POST['mensaje']
+        except Exception:
+            mensaje = {"mensajes":[]}
+        try:
             if self.request.headers['Content-Type'] == 'application/json':
                 data = json.loads(mensaje)
                 data['mensajes'].append(mensaje_json)
