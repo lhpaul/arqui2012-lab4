@@ -42,7 +42,8 @@ class UnitTests(unittest.TestCase):
         
     def test_post_text_with_db(self):
         with open('datos.json', 'w') as f:
-            f.write(json.dumps('{"mensajes":[]}'))
+            
+            f.write(json.dumps({"mensajes":[]}))
         request = webapp2.Request.blank('/')
         request.method = 'POST'
         request.headers['Content-Type'] = 'application/text'
@@ -60,7 +61,7 @@ class UnitTests(unittest.TestCase):
         
     def test_post_json_with_db(self):
         with open('datos.json', 'w') as f:
-            f.write(json.dumps('{"mensajes":[]}'))
+            f.write(json.dumps({"mensajes":[]}))
         request = webapp2.Request.blank('/')
         request.method = 'POST'
         request.headers['Content-Type'] = 'application/json'
