@@ -18,21 +18,24 @@ class HelloWebapp2(webapp2.RequestHandler):
             json_data = open('datos.json')
             data = json.load(json_data)
             json_data.close()
-            mensaje = self.request.POST['mensaje']
         except Exception:
-            mensaje = {"mensajes":[]}
+            data = {"mensajes":[]}
         try:
             if self.request.headers['Content-Type'] == 'application/json':
-                data = json.loads(mensaje)
+                mensaje_json = json.loads(self.request.body)
                 data['mensajes'].append(mensaje_json)
             else:
-                data['mensajes'].append(mensaje)
+                
+                data['mensajes'].append(self.request.body)
                 
             with open('datos.json', 'w') as f:
                 f.write(json.dumps(data))
             self.response.write("Mensaje archivado")
+            self.response.status = 201
+            self.response.headers['Content-Type'] == 'application/json'
         except Exception:
             self.response.write("No hay mensaje")
+            self.response.status = 304
             
         
 
