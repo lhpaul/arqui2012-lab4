@@ -1,13 +1,19 @@
+import sys
 import unittest
+import os
+import main
+import webapp2
 
 class TestRequests(unittest.TestCase):
 
     def setUp(self):
+        import tempfile
         self.old_dir = os.path.abspath(os.curdir) # save old directory
         self.cwd = tempfile.mkdtemp() # new current working directory
         os.chdir(self.cwd)
         
     def tearDown(self):
+        import shutil
         os.chdir(self.old_dir)      # restore working directory
         shutil.rmtree(self.cwd)     # delete temp directory
     
